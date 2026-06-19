@@ -66,7 +66,7 @@ public class Personne {
     public static String ChaineObligatoire(Scanner sc, String message) {
 
         String valeur;
-
+        sc.nextLine();
         do {
             System.out.print(message);
             valeur = sc.nextLine().trim();
@@ -76,7 +76,7 @@ public class Personne {
             }
 
         } while (valeur.isEmpty());
-        sc.nextLine();
+
         return valeur;
     }
 

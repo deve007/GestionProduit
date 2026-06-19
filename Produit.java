@@ -1,4 +1,3 @@
-package GestionProduit;
 // un produit a:
 // un code dans un tableau reserve à lui 
 // un libellé dans un tableau reserve à lui
@@ -116,6 +115,7 @@ public class Produit {
     public static String ChaineObligatoire(Scanner sc, String message) {
 
         String valeur;
+        sc.nextLine();
 
         do {
             System.out.print(message);
@@ -126,7 +126,7 @@ public class Produit {
             }
 
         } while (valeur.isEmpty());
-        sc.nextLine();
+
         return valeur;
     }
 
