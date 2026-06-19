@@ -96,7 +96,7 @@ public class Produit {
         sc.close();
     }
 
-
+//fonction pour le menu 
     public static void afficherMenu() {
         System.out.println("\n===== MENU =====");
         System.out.println("1) Lister tous les produits");
@@ -107,7 +107,7 @@ public class Produit {
         System.out.println("\nEntrer votre choix: ");
     }
 
-
+//fonction pour la generation automatique du code
     public static String GenererCodeProduit(String[] codes, int cpt) {
     return String.format("PR%03d", cpt + 1);
 }
@@ -126,7 +126,7 @@ public class Produit {
             }
 
         } while (valeur.isEmpty());
-
+        sc.nextLine();
         return valeur;
     }
 
@@ -186,12 +186,8 @@ public class Produit {
 
         for (int i = 0; i < cpt; i++) {
 
-            System.out.println("\n--------------------");
-            System.out.println("Code : " + codes[i]);
-            System.out.println("Libellé : " + libelles[i]);
-            System.out.println("Prix : " + prix[i]);
-            System.out.println("Quantité : " + quantites[i]);
-            System.out.println("Description : " + descriptions[i]);
+            AfficherUnProduit(codes, libelles, prix, quantites, descriptions, i);
+
         }
     }
 
@@ -243,12 +239,7 @@ public static void PrixCroissants(String[] libelles, int[] prix, int cpt) {
 
                 trouve = true;
 
-                System.out.println("\nProduit trouvé");
-                System.out.println("Code : " + codes[i]);
-                System.out.println("Libellé : " + libelles[i]);
-                System.out.println("Prix : " + prix[i]);
-                System.out.println("Quantité : " + quantites[i]);
-                System.out.println("Description : " + descriptions[i]);
+                AfficherUnProduit(codes, libelles, prix, quantites, descriptions, i);
 
                 break;
             }
@@ -257,5 +248,24 @@ public static void PrixCroissants(String[] libelles, int[] prix, int cpt) {
         if (!trouve) {
             System.out.println("Produit introuvable.");
         }
+    }
+
+
+    public static void AfficherUnProduit(
+            String[] codes,
+            String[] libelles,
+            int[] prix,
+            int[] quantites,
+            String[] descriptions,
+            int i) {
+
+
+            System.out.println("\n--------------------");
+            System.out.println("Code : " + codes[i]);
+            System.out.println("Libellé : " + libelles[i]);
+            System.out.println("Prix : " + prix[i]);
+            System.out.println("Quantité : " + quantites[i]);
+            System.out.println("Description : " + descriptions[i]);
+
     }
 }
