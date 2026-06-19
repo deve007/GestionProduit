@@ -18,9 +18,7 @@ public class Personne {
 
                 case 1:
                     if (cpt < taille) {
-
                         System.out.println("\n=== AJOUT PERSONNE ===");
-
                         prenoms[cpt] = ChaineObligatoire(sc, "Votre prenom: ");
                         noms[cpt] = ChaineObligatoire(sc, "Votre nom: ");
                         ages[cpt] = SaisieAge(sc, "Votre age: ");
