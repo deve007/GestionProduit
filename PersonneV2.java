@@ -1,41 +1,55 @@
 import java.util.Scanner;
 
+// Classe Personne
+class Personne {
+    String nom;
+    String prenom;
+    int age;
+}
+
 public class PersonneV2 {
 
     public static void main(String[] args) {
+
         final int taille = 100;
         Scanner sc = new Scanner(System.in);
-        String[] noms = new String[taille];
-        String[] prenoms = new String[taille];
-        int[] ages = new int[taille];
+
+        Personne[] personnes = new Personne[taille];
+
         int cpt = 0;
         int choix;
 
         do {
             afficherMenu();
             choix = sc.nextInt();
+
             switch (choix) {
 
                 case 1:
                     if (cpt < taille) {
+
                         System.out.println("\n=== AJOUT PERSONNE ===");
-                        prenoms[cpt] = ChaineObligatoire(sc, "Votre prenom: ");
-                        noms[cpt] = ChaineObligatoire(sc, "Votre nom: ");
-                        ages[cpt] = SaisieAge(sc, "Votre age: ");
+
+                        Personne p1 = new Personne();
+
+                        p1.prenom = ChaineObligatoire(sc, "Votre prenom : ");
+                        p1.nom = ChaineObligatoire(sc, "Votre nom : ");
+                        p1.age = SaisieAge(sc, "Votre age : ");
+
+                        personnes[cpt] = p1;
                         cpt++;
+
                     } else {
                         System.out.println("Tableau plein !");
                     }
                     break;
 
                 case 2:
-                    if (cpt < taille) {
-                        listePersonnes(noms, prenoms, ages, cpt);
-                    }
+                    listePersonnes(personnes, cpt);
                     break;
 
                 case 3:
-                    AgeCroissants(prenoms, prenoms, ages, cpt);
+                    AgeCroissants(personnes, cpt);
                     break;
 
                 case 4:
@@ -58,13 +72,14 @@ public class PersonneV2 {
         System.out.println("2) Lister les personnes");
         System.out.println("3) Afficher les personnes majeures");
         System.out.println("4) Quitter");
-        System.out.println("\nEntrer votre choix: ");
+        System.out.println("\nEntrer votre choix : ");
     }
 
     public static String ChaineObligatoire(Scanner sc, String message) {
 
         String valeur;
         sc.nextLine();
+
         do {
             System.out.print(message);
             valeur = sc.nextLine().trim();
@@ -96,11 +111,7 @@ public class PersonneV2 {
         return valeur;
     }
 
-    public static void listePersonnes(
-            String[] noms,
-            String[] prenoms,
-            int[] ages,
-            int cpt) {
+    public static void listePersonnes(Personne[] personnes, int cpt) {
 
         if (cpt == 0) {
             System.out.println("Aucune personne enregistrée.");
@@ -110,22 +121,25 @@ public class PersonneV2 {
         for (int i = 0; i < cpt; i++) {
 
             System.out.println("\n--------------------");
-            System.out.println("Prenom : " + prenoms[i]);
-            System.out.println("Nom : " + noms[i]);
-            System.out.println("Age : " + ages[i]);
+            System.out.println("Prenom : " + personnes[i].prenom);
+            System.out.println("Nom : " + personnes[i].nom);
+            System.out.println("Age : " + personnes[i].age);
         }
     }
 
-    public static void AgeCroissants(String[] prenoms, String[] noms, int[] ages, int cpt) {
+    public static void AgeCroissants(Personne[] personnes, int cpt) {
+
+        System.out.println("\nPersonnes majeures :");
 
         for (int i = 0; i < cpt; i++) {
 
-            if (ages[i] > 18) {
-                System.out.println("\nPersonnes majeures :");
-                System.out.println("\n"+prenoms[i] + " " + noms[i] + ": " + ages[i]);
+            if (personnes[i].age >= 18) {
+
+                System.out.println(
+                        personnes[i].prenom + " "
+                        + personnes[i].nom + " : "
+                        + personnes[i].age);
             }
-
         }
-
     }
 }
